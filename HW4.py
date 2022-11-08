@@ -1,3 +1,4 @@
+'''
 # 30. Есть два файла: в одном хранятся ФИО пользователей сайта, а в другом — данные об их хобби. Известно,
 # что при хранении данных используется принцип: одна строка — один пользователь.
 # Написать код, загружающий данные из обоих файлов и формирующий из них словарь: ключи — ФИО, значения — данные о хобби.
@@ -8,24 +9,24 @@
 # Фрагмент файла с данными о хобби (hobby.txt):
 # скалолазание, охота
 # горные лыжи
+'''
 
-
-file1 = open('ForHW4/users.txt', 'r', encoding='utf8')
-users = file1.read()
-file1.close()
-
-
-file2 = open('ForHW4/hobby.txt', 'r', encoding='utf8')
-hobby = file2.read()
-file2.close()
-
-keys = users.split('\n')
-values = hobby.split('\n')
-result = dict(zip(keys, values))
-
-with open('ForHW4/result_HW4Task30.txt', 'w') as f:
-    for key, value in result.items():
-        f.write(f'{key}: {value}\n')
+# file1 = open('ForHW4/users.txt', 'r', encoding='utf8')
+# users = file1.read()
+# file1.close()
+#
+#
+# file2 = open('ForHW4/hobby.txt', 'r', encoding='utf8')
+# hobby = file2.read()
+# file2.close()
+#
+# keys = users.split('\n')
+# values = hobby.split('\n')
+# result = dict(zip(keys, values))
+#
+# with open('ForHW4/result_HW4Task30.txt', 'w') as f:
+#     for key, value in result.items():
+#         f.write(f'{key}: {value}\n')
 
 '''
 31. Задайте натуральное число N. Напишите программу, которая составит список простых множителей числа N.
