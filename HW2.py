@@ -105,4 +105,3 @@ def multiply_elements(arr):
 
 n = int(input('Введите число: '))
 print(multiply_elements(create_arr(n)))
-'''
