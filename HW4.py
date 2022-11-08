@@ -13,20 +13,19 @@
 file1 = open('ForHW4/users.txt', 'r', encoding='utf8')
 users = file1.read()
 file1.close()
-clean_users = users.replace('\n', ' ').replace('\r', ' ')
-print(users)
+
 
 file2 = open('ForHW4/hobby.txt', 'r', encoding='utf8')
 hobby = file2.read()
 file2.close()
-clear_hobby = hobby.replace('\n', ' ').replace('\r', ' ')
-print(hobby)
 
-with open('ForHW4/result_HW4Task30.txt', 'w') as file_sum:
-    file_sum.writelines(sum_pol)
+keys = users.split('\n')
+values = hobby.split('\n')
+result = dict(zip(keys, values))
 
-print(clear_hobby, clean_users)
-
+with open('ForHW4/result_HW4Task30.txt', 'w') as f:
+    for key, value in result.items():
+        f.write(f'{key}: {value}\n')
 
 '''
 31. Задайте натуральное число N. Напишите программу, которая составит список простых множителей числа N.
@@ -98,47 +97,47 @@ print(clear_hobby, clean_users)
 # 34. Даны два файла, в каждом из которых находится запись многочлена. Задача - сформировать файл, содержащий сумму многочленов.
 # 2x² + 4x + 5 = 0 и x² + 5x + 3 = 0 => 3x² + 9x + 8 = 0
 
-from itertools import *
-
-def get_polynomial(k, ratios):  # вычисляем полином, передаем степень и массив коэффициентов
-    var = ['*x^']*(k-1) + ['*x']
-    polynomial = [[a, b, c] for a, b, c in zip_longest(
-        ratios, var, range(k, 1, -1), fillvalue='') if a != 0]
-    for x in polynomial:
-        x.append(' + ')
-    polynomial = list(chain(*polynomial))
-    polynomial[-1] = ' = 0'
-    return "".join(map(str, polynomial)).replace(' 1*x', ' x')
-file1 = 'ForHW4/poly_1.txt'
-file2 = 'ForHW4/poly_2.txt'
-
-
-def read_pol(file):
-    with open(str(file), 'r') as data:
-        pol = data.read()
-    return pol
-
-
-def convert_pol(pol):
-    pol.replace('= 0', '')
-    pol = pol.split(' + ')
-    pol = [i[0] for i in pol]
-    for i in range(len(pol)):
-        if pol[i] == 'x':
-            pol[i] = '1'
-    pol = pol[::-1]
-    return pol
-
-
-pol1 = read_pol(file1)
-pol2 = read_pol(file2)
-
-pol1_coef = list(map(int, convert_pol(pol1)))
-pol2_coef = list(map(int, convert_pol(pol2)))
-
-sum_coef = list(map(sum, zip_longest(pol1_coef, pol2_coef, fillvalue=0)))
-sum_coef = sum_coef[::-1]
-sum_pol = get_polynomial(len(sum_coef)-1, sum_coef)
-print('Итоговый результат сложения полиномов:\n', sum_pol)
-with open('ForHW4/result_HW4Task34.txt', 'w') as file_sum:
-    file_sum.writelines(sum_pol)
+# from itertools import *
+#
+# def get_polynomial(k, ratios):  # вычисляем полином, передаем степень и массив коэффициентов
+#     var = ['*x^']*(k-1) + ['*x']
+#     polynomial = [[a, b, c] for a, b, c in zip_longest(
+#         ratios, var, range(k, 1, -1), fillvalue='') if a != 0]
+#     for x in polynomial:
+#         x.append(' + ')
+#     polynomial = list(chain(*polynomial))
+#     polynomial[-1] = ' = 0'
+#     return "".join(map(str, polynomial)).replace(' 1*x', ' x')
+# file1 = 'ForHW4/poly_1.txt'
+# file2 = 'ForHW4/poly_2.txt'
+#
+#
+# def read_pol(file):
+#     with open(str(file), 'r') as data:
+#         pol = data.read()
+#     return pol
+#
+#
+# def convert_pol(pol):
+#     pol.replace('= 0', '')
+#     pol = pol.split(' + ')
+#     pol = [i[0] for i in pol]
+#     for i in range(len(pol)):
+#         if pol[i] == 'x':
+#             pol[i] = '1'
+#     pol = pol[::-1]
+#     return pol
+#
+#
+# pol1 = read_pol(file1)
+# pol2 = read_pol(file2)
+#
+# pol1_coef = list(map(int, convert_pol(pol1)))
+# pol2_coef = list(map(int, convert_pol(pol2)))
+#
+# sum_coef = list(map(sum, zip_longest(pol1_coef, pol2_coef, fillvalue=0)))
+# sum_coef = sum_coef[::-1]
+# sum_pol = get_polynomial(len(sum_coef)-1, sum_coef)
+# print('Итоговый результат сложения полиномов:\n', sum_pol)
+# with open('ForHW4/result_HW4Task34.txt', 'w') as file_sum:
+#     file_sum.writelines(sum_pol)
